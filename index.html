@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#7ac7e8" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23ffe7a0'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+  <title>Cloudbound — A Voxel Island</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game" aria-label="3D voxel island game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Cloudbound home"><span class="brand-mark">✦</span><span>CLOUDBOUND</span></a>
+      <div class="world-status"><span class="live-dot"></span><span>SKY ISLANDS</span><span class="status-divider"></span><span id="clock-label">DAY 01 · 08:00</span></div>
+      <button id="sound-button" class="icon-button" aria-label="Toggle ambient sound" title="Sound on/off">♫</button>
+    </header>
+
+    <section class="mission-card" aria-live="polite">
+      <div class="mission-eyebrow"><span class="sparkle">✦</span> YOUR JOURNEY</div>
+      <h1 id="mission-title">Gather the sky shards</h1>
+      <p id="mission-copy">Find the glowing fragments scattered across the island. Bring them back to the beacon.</p>
+      <div class="mission-progress"><div class="progress-track"><div id="progress-fill"></div></div><span id="shard-count">0 / 5</span></div>
+      <div class="objective-status"><span class="objective-icon">◇</span><span id="objective-label">THE BEACON IS WAITING</span></div>
+    </section>
+
+    <div class="crosshair" aria-hidden="true"><i></i><i></i></div>
+    <div id="interact-prompt" class="interact-prompt">E <span>Collect sky shard</span></div>
+
+    <section class="hotbar-wrap" aria-label="Block inventory">
+      <div class="hotbar-label"><span>BUILD KIT</span><span id="inventory-label">12 blocks</span></div>
+      <div class="hotbar" id="hotbar">
+        <button class="slot selected" data-type="grass" aria-label="Select grass block"><kbd>1</kbd><span class="block-icon grass-icon"></span><small>Grass</small><b id="count-grass">12</b></button>
+        <button class="slot" data-type="wood" aria-label="Select wood block"><kbd>2</kbd><span class="block-icon wood-icon"></span><small>Wood</small><b id="count-wood">8</b></button>
+        <button class="slot" data-type="stone" aria-label="Select stone block"><kbd>3</kbd><span class="block-icon stone-icon"></span><small>Stone</small><b id="count-stone">8</b></button>
+        <button class="slot" data-type="glow" aria-label="Select glow block"><kbd>4</kbd><span class="block-icon glow-icon"></span><small>Glow</small><b id="count-glow">4</b></button>
+      </div>
+    </section>
+
+    <aside class="controls-card" id="controls-card">
+      <button class="close-help" id="close-help" aria-label="Dismiss controls">×</button>
+      <div class="controls-title">HOW TO PLAY <span>✦</span></div>
+      <div class="controls-grid">
+        <div><kbd>W A S D</kbd><span>Move</span></div>
+        <div><kbd>SPACE</kbd><span>Jump</span></div>
+        <div><kbd>CLICK</kbd><span>Look around</span></div>
+        <div><kbd>E</kbd><span>Collect shard</span></div>
+        <div><kbd>1 — 4</kbd><span>Select blocks</span></div>
+        <div><kbd>LEFT / RIGHT</kbd><span>Break / build</span></div>
+      </div>
+      <div class="help-footer">The sun sets every few minutes. Stay curious.</div>
+    </aside>
+
+    <div class="interaction-hint" id="interaction-hint"><span class="hint-key">CLICK TO EXPLORE</span><span>WASD to move <b>·</b> Space to jump</span></div>
+    <div class="day-pill"><span class="sun-symbol" id="day-symbol">☀</span><span id="day-state">SUNRISE</span><span class="day-divider"></span><span id="time-left">04:00</span></div>
+    <div class="toast" id="toast" role="status"></div>
+
+    <div class="mobile-controls" id="mobile-controls">
+      <div class="joystick" id="joystick"><div class="joy-knob" id="joy-knob"></div></div>
+      <div class="mobile-actions"><button id="jump-touch" aria-label="Jump">↑</button><button id="use-touch" aria-label="Collect shard">E</button><button id="build-touch" aria-label="Build block">＋</button></div>
+    </div>
+
+    <section class="start-overlay" id="start-overlay">
+      <div class="overlay-stars">✦ &nbsp; · &nbsp; ✧</div>
+      <div class="overlay-kicker">A LITTLE WORLD ABOVE THE CLOUDS</div>
+      <h2>Find your<br><em>way home.</em></h2>
+      <p>Explore a floating island, gather five lost sky shards, and relight the old beacon.</p>
+      <button class="start-button" id="start-button">START EXPLORING <span>↗</span></button>
+      <div class="overlay-note">A quiet adventure · No rush, just wonder</div>
+    </section>
+    <div class="loading" id="loading">GROWING YOUR ISLAND <span>✦</span></div>
+    <footer class="footer"><span>AN ISLAND IN THE CLOUDS</span><span>BUILD · EXPLORE · RESTORE</span></footer>
+  </main>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>
